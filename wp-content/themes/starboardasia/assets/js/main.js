@@ -139,23 +139,23 @@
   $(window).on('scroll', function() {
     var cur_pos = $(this).scrollTop() + 200;
 
-    nav_sections.each(function() {
-      var top = $(this).offset().top - main_nav_height,
+    if ($(".homepage").length > 0){
+      nav_sections.each(function() {
+        var top = $(this).offset().top - main_nav_height,
         bottom = top + $(this).outerHeight();
+         
+        if (cur_pos >= top && cur_pos <= bottom) {
+          main_nav.find('li').removeClass('active');
+          // console.log($(this).attr('id')); 
+          main_nav.find('a.menu-' + $(this).attr('id')).parent('li').addClass('active');
+        }
 
-        // console.log(cur_pos +  " vs " + top + " vs " + bottom);
+        if (cur_pos < 300) {
+          $(".nav-menu ul:first li:first").addClass('active');
+        }
 
-      if (cur_pos >= top && cur_pos <= bottom) {
-        main_nav.find('li').removeClass('active');
-        // console.log($(this).attr('id')); 
-        main_nav.find('a.menu-' + $(this).attr('id')).parent('li').addClass('active');
-      }
-
-      if (cur_pos < 300) {
-        $(".nav-menu ul:first li:first").addClass('active');
-      }
-
-    });
+      });
+    }
   });
 
   // jQuery counterUp (used in Whu Us section)
@@ -167,7 +167,7 @@
   // Porfolio isotope and filter
   $(window).on('load', function() {
     var portfolioIsotope = $('.portfolio-container').isotope({
-      filter: '.filter-app'
+      filter: '.filter-' + $("#filter-type").val()
     });
     $('#portfolio-flters li').on('click', function() {
       $("#portfolio-flters li").removeClass('filter-active');

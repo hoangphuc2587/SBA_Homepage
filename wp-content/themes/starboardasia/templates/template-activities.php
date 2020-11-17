@@ -56,28 +56,31 @@ get_header();
       </div>
     </section><!-- End Testimonials Section -->
 
-  
+    <?php 
+        global $post;
+        $post_slug = $post->post_name;
+    ?> 
     <!-- ======= Portfolio Section ======= -->
     <section id="portfolio" class="portfolio">
       <div class="container" data-aos="fade-up">
 
         <header class="section-header">
-          <h3 class="section-title" style="margin-bottom: 60px;">Hoạt động</h3>
+          <h3 class="section-title" style="margin-bottom: 60px;"><?php pll_e('Hoạt động');?></h3>
         </header>
-
+        <input type="hidden" name="filter-type" id="filter-type" value="<?php echo $post_slug;?>">
         <div class="row" data-aos="fade-up" data-aos-delay="100">
           <div class="col-lg-12">
             <ul id="portfolio-flters">              
-              <li class="filter-active" data-filter=".filter-app">Team Building</li>
-              <li data-filter=".filter-card">Du Lịch</li>
-              <li data-filter=".filter-web">Công Tác Nhật Bản</li>
+              <li<?php echo $post_slug === 'team-building' ? ' class="filter-active"' : '' ?> data-filter=".filter-team-building"><?php pll_e('Team Building');?></li>
+              <li<?php echo $post_slug === 'tourism' ? ' class="filter-active"' : '' ?> data-filter=".filter-tourism"><?php pll_e('Du Lịch');?></li>
+              <li<?php echo $post_slug === 'business-japan' ? ' class="filter-active"' : '' ?> data-filter=".filter-business-japan"><?php pll_e('Công Tác Nhật Bản');?></li>
             </ul>
           </div>
         </div>
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
-          <div class="col-lg-4 col-md-6 portfolio-item portfolio-element filter-app"> 
+          <div class="col-lg-4 col-md-6 portfolio-item portfolio-element filter-team-building"> 
             <a href="<?php echo site_url(); ?>/wp-content/themes/starboardasia/assets/img/portfolio/img-1.png" class="link-preview venobox" data-gall="portfolioGallery" title="App 2">
               <div class="portfolio-wrap">
                 <img src="<?php echo site_url(); ?>/wp-content/themes/starboardasia/assets/img/portfolio/img-1.png" class="img-fluid" alt="">
@@ -88,7 +91,7 @@ get_header();
             </a>
           </div>
 
-           <div class="col-lg-4 col-md-6 portfolio-item portfolio-element filter-app"> 
+           <div class="col-lg-4 col-md-6 portfolio-item portfolio-element filter-team-building"> 
             <a href="<?php echo site_url(); ?>/wp-content/themes/starboardasia/assets/img/portfolio/img-2.png" class="link-preview venobox" data-gall="portfolioGallery" title="App 2">
               <div class="portfolio-wrap">
                 <img src="<?php echo site_url(); ?>/wp-content/themes/starboardasia/assets/img/portfolio/img-2.png" class="img-fluid" alt="">
@@ -100,7 +103,7 @@ get_header();
           </div>
 
 
-           <div class="col-lg-4 col-md-6 portfolio-item portfolio-element filter-web"> 
+           <div class="col-lg-4 col-md-6 portfolio-item portfolio-element filter-business-japan"> 
             <a href="<?php echo site_url(); ?>/wp-content/themes/starboardasia/assets/img/portfolio/img-3.png" class="link-preview venobox" data-gall="portfolioGallery" title="App 2">
               <div class="portfolio-wrap">
                 <img src="<?php echo site_url(); ?>/wp-content/themes/starboardasia/assets/img/portfolio/img-3.png" class="img-fluid" alt="">

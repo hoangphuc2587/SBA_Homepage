@@ -224,9 +224,9 @@ get_header();
         </header>
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <a href="<?php echo home_url(); ?>/activities/team-building">
+          <input type="hidden" name="filter-type" id="filter-type" value="top">
+          <div class="col-lg-4 col-md-6 portfolio-item filter-top">
+            <a href="<?php echo home_url(); ?>/activities/team-building#portfolio">
               <div class="portfolio-wrap">
                 <img src="<?php echo site_url(); ?>/wp-content/themes/starboardasia/assets/img/portfolio/img-1.png" class="img-fluid" alt="">
                 <div class="portfolio-info">
@@ -236,8 +236,8 @@ get_header();
             </a>
           </div>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app" data-wow-delay="0.1s">
-            <a href="<?php echo home_url(); ?>/activities/tourism">
+          <div class="col-lg-4 col-md-6 portfolio-item filter-top" data-wow-delay="0.1s">
+            <a href="<?php echo home_url(); ?>/activities/tourism#portfolio">
               <div class="portfolio-wrap">
                 <img src="<?php echo site_url(); ?>/wp-content/themes/starboardasia/assets/img/portfolio/img-2.png" class="img-fluid" alt="">
                 <div class="portfolio-info">
@@ -247,8 +247,8 @@ get_header();
             </a>
           </div>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app" data-wow-delay="0.2s">
-            <a href="<?php echo home_url(); ?>/activities/business-japan">
+          <div class="col-lg-4 col-md-6 portfolio-item filter-top" data-wow-delay="0.2s">
+            <a href="<?php echo home_url(); ?>/activities/business-japan#portfolio">
               <div class="portfolio-wrap">
                 <img src="<?php echo site_url(); ?>/wp-content/themes/starboardasia/assets/img/portfolio/img-3.png" class="img-fluid" alt="">
                 <div class="portfolio-info">

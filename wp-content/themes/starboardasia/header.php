@@ -51,7 +51,7 @@
        <a href="<?php echo home_url(); ?>/" class="logo mr-auto"><img src="<?php echo site_url(); ?>/wp-content/themes/starboardasia/assets/img/logo.png" alt="" class="img-fluid"></a>
         <?php 
         global $post;
-        $post_slug = $post->post_name;       
+        $post_slug = $post->post_name;
         ?> 
       <nav class="main-nav d-none d-lg-block <?php echo 'main-nav-'.pll_current_language();?>">
         <ul>
@@ -60,7 +60,7 @@
             <a class="menu-about" href="<?php echo home_url(); ?>/about-us"><?php pll_e('Về chúng tôi');?></a>
           </li>
           <li><a  class="menu-services" href="<?php echo home_url(); ?>/#services"><?php pll_e('Dịch vụ');?></a></li>
-          <li<?php echo $post_slug === 'activities' ? ' class="active"' : '';?>>
+          <li<?php echo in_array($post_slug, array("activities", "team-building", "tourism", "business-japan")) ? ' class="active"' : '';?>>
             <a class="menu-portfolio" href="<?php echo home_url(); ?>/activities"><?php pll_e('Hoạt động');?></a>
           </li>
           <li><a class="menu-recruit" href="<?php echo home_url(); ?>/#recruit"><?php pll_e('Tuyển dụng');?></a></li>
@@ -73,4 +73,4 @@
 
     </div>
   </header><!-- End Header -->
-  <main id="main">
+  <main id="main"<?php echo in_array($post_slug, array("vi", "ja", "en")) ? ' class="homepage"' : '';?>>
