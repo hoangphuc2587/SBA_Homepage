@@ -250,7 +250,7 @@ button:active, button:focus {
   padding-left: 30px !important;
 }
 
-.main-nav-ja > ul > li {
+/*.main-nav-ja > ul > li {
   padding-left: 45px !important;
 }
 
@@ -261,7 +261,7 @@ button:active, button:focus {
 
 .main-nav-ja > ul > li.language-en {
   padding-left: 45px !important;
-}
+}*/
 
 .main-nav a {
   display: block;

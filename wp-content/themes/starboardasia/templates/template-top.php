@@ -207,7 +207,7 @@ get_header();
             </p>
           </div>
           <div class="col-lg-3 cta-btn-container text-center">
-            <a class="cta-btn align-middle" href="<?php echo home_url(); ?>/flow-activities"><?php pll_e('Xem thêm');?></a>
+            <a class="cta-btn align-middle" href="<?php echo home_url(); ?>/process-work"><?php pll_e('Xem thêm');?></a>
           </div>
         </div>
 
