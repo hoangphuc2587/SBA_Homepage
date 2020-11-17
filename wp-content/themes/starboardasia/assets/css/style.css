@@ -250,6 +250,19 @@ button:active, button:focus {
   padding-left: 30px !important;
 }
 
+.main-nav-ja > ul > li {
+  padding-left: 45px !important;
+}
+
+.main-nav-ja > ul > li.language{
+  padding-left: 5px !important;
+  margin-top: 0px !important;
+}
+
+.main-nav-ja > ul > li.language-en {
+  padding-left: 45px !important;
+}
+
 .main-nav a {
   display: block;
   position: relative;

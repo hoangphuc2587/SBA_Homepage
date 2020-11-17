@@ -42,23 +42,29 @@
 </head>
 
 <body>
-
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
       <!-- <h1 class="logo mr-auto"><a href="index.html">Starboasdrd <span>Asia</span></a></h1> -->
       <!-- Uncomment below if you prefer to use an image logo -->
-       <a href="index.html" class="logo mr-auto"><img src="<?php echo site_url(); ?>/wp-content/themes/starboardasia/assets/img/logo.png" alt="" class="img-fluid"></a>
-
-      <nav class="main-nav d-none d-lg-block">
+       <a href="<?php echo home_url(); ?>/" class="logo mr-auto"><img src="<?php echo site_url(); ?>/wp-content/themes/starboardasia/assets/img/logo.png" alt="" class="img-fluid"></a>
+        <?php 
+        global $post;
+        $post_slug = $post->post_name;       
+        ?> 
+      <nav class="main-nav d-none d-lg-block <?php echo 'main-nav-'.pll_current_language();?>">
         <ul>
-          <li class="active"><a href="index.html">Trang chủ</a></li>
-          <li><a href="about-us.html">Về chúng tôi</a></li>
-          <li><a href="index.html#services">Dịch vụ</a></li>
-          <li><a href="active.html">Hoạt động</a></li>
-          <li><a href="index.html#recruit">Tuyển dụng</a></li>
-          <li><a href="index.html#clients">Liên hệ</a></li>
+          <li<?php echo in_array($post_slug, array("vi", "ja", "en")) ? ' class="active"' : '';?>><a href="<?php echo home_url(); ?>/"><?php pll_e('Trang chủ');?></a></li>
+          <li<?php echo $post_slug === 'about-us' ? ' class="active"' : '';?>>
+            <a class="menu-about" href="<?php echo home_url(); ?>/about-us"><?php pll_e('Về chúng tôi');?></a>
+          </li>
+          <li><a  class="menu-services" href="<?php echo home_url(); ?>/#services"><?php pll_e('Dịch vụ');?></a></li>
+          <li<?php echo $post_slug === 'activities' ? ' class="active"' : '';?>>
+            <a class="menu-portfolio" href="<?php echo home_url(); ?>/activities"><?php pll_e('Hoạt động');?></a>
+          </li>
+          <li><a class="menu-recruit" href="<?php echo home_url(); ?>/#recruit"><?php pll_e('Tuyển dụng');?></a></li>
+          <li><a class="menu-clients" href="<?php echo home_url(); ?>/#clients"><?php pll_e('Liên hệ');?></a></li>
           <li class="language language-en"><a href="<?php echo site_url(); ?>/en"><img src="<?php echo site_url(); ?>/wp-content/themes/starboardasia/assets/img/en.png" class="language-img" alt=""></a></li>
           <li class="language language-ja"><a href="<?php echo site_url(); ?>/ja"><img src="<?php echo site_url(); ?>/wp-content/themes/starboardasia/assets/img/ja.png" class="language-img" alt=""></a></li>
           <li class="language language-vi"><a href="<?php echo site_url(); ?>/"><img src="<?php echo site_url(); ?>/wp-content/themes/starboardasia/assets/img/vi.png" class="language-img" alt=""></a></li>

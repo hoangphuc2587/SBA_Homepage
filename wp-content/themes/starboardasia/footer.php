@@ -27,12 +27,12 @@
                 <div class="footer-links">
                   <h4 class="name-company">Starboard Asia Co.,Ltd</h4>
                   <p>
-                    2F, QTSC1 Building, Street No.14 <br>
-                    , Quang Trung Software City <br>
-                    , Tan Chanh Hiep Ward, District 12<br> 
-                    , Ho Chi Minh City, VietNam <br><br>
-                    <strong>Tel:</strong> 028-3715-4544<br><br>
-                    <strong>Email:</strong> sba@starboardasia.com<br>
+                    <?php pll_e('2F, QTSC1 Building, Street No.14');?> <br>
+                    , <?php pll_e('Quang Trung Software City');?> <br>
+                    , <?php pll_e('Tan Chanh Hiep Ward, District 12');?><br> 
+                    , <?php pll_e('Ho Chi Minh City, VietNam');?> <br><br>
+                    <strong><?php pll_e('Tel');?>:</strong> 028-3715-4544<br><br>
+                    <strong><?php pll_e('Email');?>:</strong> sba@starboardasia.com<br>
                   </p>
                 </div>
 
@@ -51,14 +51,14 @@
             <div class="row">              
               <div class="col-sm-12">
                 <div class="footer-links">
-                  <h4 class="name-links">Liên kết</h4>
+                  <h4 class="name-links"><?php pll_e('Liên kết');?></h4>
                   <ul>
-                    <li><a href="#">Trang chủ</a></li>
-                    <li><a href="#about">Về chúng tôi</a></li>
-                    <li><a href="#">Dịch vụ</a></li>
-                    <li><a href="#">Hoạt động</a></li>
-                    <li><a href="#">Tuyển dụng</a></li>
-                    <li><a href="#">Liên hệ</a></li>
+                    <li><a href="#"><?php pll_e('Trang chủ');?></a></li>
+                    <li><a href="#about"><?php pll_e('Về chúng tôi');?></a></li>
+                    <li><a href="#"><?php pll_e('Dịch vụ');?></a></li>
+                    <li><a href="#"><?php pll_e('Hoạt động');?></a></li>
+                    <li><a href="#"><?php pll_e('Tuyển dụng');?></a></li>
+                    <li><a href="#"><?php pll_e('Liên hệ');?></a></li>
                   </ul>
                 </div>            
               </div>
