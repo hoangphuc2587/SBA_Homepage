@@ -8,6 +8,8 @@
 
   $('form.php-email-form').submit(function(e) {
     e.preventDefault();
+
+    $(this).find('.sent-message').css("display", "none");
     
     var f = $(this).find('.form-group'),
       ferror = false,
@@ -133,7 +135,7 @@
       if (msg == 'OK') {
         this_form.find('.loading').slideUp();
         this_form.find('.sent-message').slideDown();
-        this_form.find("input:not(input[type=submit]), textarea").val('');
+        this_form.find("input[type=text], textarea, input[type=email]").val('');
       } else {
         this_form.find('.loading').slideUp();
         if(!msg) {

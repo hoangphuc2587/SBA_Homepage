@@ -275,7 +275,7 @@ get_header();
                   <h3 class="text-center"><?php pll_e('Form ứng tuyển');?></h3>
                   <p class="text-left"><?php pll_e('Mời bạn điền thông tin và gửi về cho chúng tôi, nhận phản hồi sớm nhất');?></p>
                   <div class="form">
-                    <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                    <form action="<?php echo admin_url( 'admin-ajax.php' ); ?>" method="post" role="form" enctype="multipart/form-data" class="php-email-form">
                       <div class="row">
 
                         <div class="col-lg-6 col-md-6 col-sm-12">
@@ -308,7 +308,7 @@ get_header();
 
                         <div class="col-lg-6 col-md-6 col-sm-12">
                           <div class="form-group">
-                            <input type="text" name="company_applicant" class="form-control" id="company-applicant" placeholder="<?php pll_e('Công ty ứng tuyển');?>" data-rule="required" data-msg="<?php pll_e('Vui lòng nhập công ty ứng tuyển');?>" />
+                            <input type="email" name="email" class="form-control" id="email" placeholder="<?php pll_e('Email');?>" data-rule="email" data-msg="<?php pll_e('Vui lòng nhập email');?>" />
                             <div class="validate"></div>
                           </div>
                         </div>
@@ -336,11 +336,14 @@ get_header();
 
                       <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-12 file-upload text-right">                          
-                           <span><a id href='#'><?php pll_e('Tải lên CV');?> <i class="fa fa-upload"></i></a>
-                           	<input id="file-upload" class="form-control" name="file" type='file' data-rule="required" data-msg="<?php pll_e('Vui lòng tải lên CV');?>"/>
+                           <span class="form-group"><a id href='#'><?php pll_e('Tải lên CV');?> <!-- <i class="fa fa-upload"></i> --></a>
+                            <input id="file-upload" accept="application/pdf,application/msword,
+  application/vnd.openxmlformats-officedocument.wordprocessingml.document" class="form-control" name="file" type='file' data-rule="required" data-msg="<?php pll_e('Vui lòng tải lên CV');?>"/>
+                           	 <div class="validate"></div>
                            </span>
                         </div>  
                         <div class="col-lg-6 col-md-6 col-sm-12 text-left btn-submit">
+                          <input type="hidden" name="action" value="save_recruit">
                           <button type="submit" title="Gửi Ngay"><?php pll_e('Gửi ngay');?></button>
                         </div>
                       </div>  
@@ -388,7 +391,7 @@ get_header();
         <header class="section-header">
           <h3 class="section-title"><?php pll_e('Form liên hệ');?></h3>
         </header>       
-        <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+        <form action="<?php echo admin_url( 'admin-ajax.php' ); ?>" method="post" role="form" class="php-email-form">
           <div class="row">
 
             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -433,7 +436,8 @@ get_header();
             <div class="sent-message"><?php pll_e('Your message has been sent. Thank you!');?></div>
           </div>  
           <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 text-center">                         
+            <div class="col-lg-12 col-md-12 col-sm-12 text-center">            
+              <input type="hidden" name="action" value="save_contact">
               <button type="submit" title="Send Message"><?php pll_e('Gửi đi');?></button>
             </div>
           </div>  
