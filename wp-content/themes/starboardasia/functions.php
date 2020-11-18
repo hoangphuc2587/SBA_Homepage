@@ -764,6 +764,11 @@ function hide_admin_bar_from_front_end(){
 add_filter( 'show_admin_bar', 'hide_admin_bar_from_front_end' );
 
 
+if ( function_exists( 'add_image_size' ) ) { 
+    add_image_size( 'activities-thumb', 381, 278, true ); //300 pixels wide (and unlimited height)    
+}
+
+
 add_action('init', function() {
   pll_register_string('starboardasia', 'Tuyển Dụng Việc Làm');
   pll_register_string('starboardasia', 'Hàng trăm công việc hấp dẫn đang đợi bạn');

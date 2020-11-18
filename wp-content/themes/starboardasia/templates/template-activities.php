@@ -9,6 +9,8 @@
  */
 
 get_header();
+global $post;
+$post_slug = $post->post_name;
 ?>
 
     <!-- ======= Testimonials Section ======= -->
@@ -56,32 +58,6 @@ get_header();
       </div>
     </section><!-- End Testimonials Section -->
 
-    <?php 
-        global $post;
-        $post_slug = $post->post_name;
-       // $terms = get_terms('Team Building' );
-        // $myterms = get_the_terms('team-building', 'orderby=none&hide_empty');  
-       
-    ?> 
-    <?php
-    $posts_array = get_posts(
-    array(
-        'posts_per_page' => -1,
-        'post_type' => 'post',
-        'tax_query' => array(
-            array(
-                'taxonomy' => 'tourism',
-                'field' => 'term_id',
-                'terms' => 26,
-            )
-        )
-      )
-    );
-    // $term_list = wp_get_post_terms( $post->ID, 'tourism', array( 'fields' => 'names' ) );
-    // print_r( $term_list );
-    // echo '<pre>',print_r($posts_array,1),'</pre>';
-    // die;
- ?>
     <!-- ======= Portfolio Section ======= -->
     <section id="portfolio" class="portfolio">
       <div class="container" data-aos="fade-up">
@@ -99,53 +75,143 @@ get_header();
             </ul>
           </div>
         </div>
+        <!-- Activities Team Building -->
+        <?php
+          $query_args = array(
+              'post_type'       => 'attachment',
+              'post_status'     => 'inherit',
+              'posts_per_page'  => -1,
+              'tax_query'       => array(
+                  array(
+                      'taxonomy' => 'mediamatic_wpfolder',
+                      'field'    => 'slug',
+                      'terms'    => 'team-building',
+                  ),
+              ),
+          );
 
+          $the_query = new WP_Query( $query_args );
+        ?>
+
+        <?php if ( $the_query->have_posts() ) : ?>
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
-          <div class="col-lg-4 col-md-6 portfolio-item portfolio-element filter-team-building"> 
-            <a href="<?php echo site_url(); ?>/wp-content/themes/starboardasia/assets/img/portfolio/img-1.png" class="link-preview venobox" data-gall="portfolioGallery" title="App 2">
-              <div class="portfolio-wrap">
-                <img src="<?php echo site_url(); ?>/wp-content/themes/starboardasia/assets/img/portfolio/img-1.png" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Quà tặng cuối năm cho nhân viên công ty</h4>
+          <!-- the loop -->
+          <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+          <?php 
+            $p_id = get_the_ID();
+          ?>  
+            <div class="col-lg-4 col-md-6 portfolio-item portfolio-element filter-team-building"> 
+              <a href="<?php echo wp_get_attachment_image_src(get_post_thumbnail_id($p_i), 'full')[0];?>" class="link-preview venobox" data-gall="portfolioGallery" title="App 2">
+                <div class="portfolio-wrap">
+                  <img src="<?php echo wp_get_attachment_image_src(get_post_thumbnail_id($p_i), 'activities-thumb')[0];?>" class="img-fluid" alt="">
+                  <div class="portfolio-info">
+                    <h4><?php echo wp_get_attachment_caption();?></h4>
+                  </div>
                 </div>
-              </div>
-            </a>
-          </div>
-
-           <div class="col-lg-4 col-md-6 portfolio-item portfolio-element filter-team-building"> 
-            <a href="<?php echo site_url(); ?>/wp-content/themes/starboardasia/assets/img/portfolio/img-2.png" class="link-preview venobox" data-gall="portfolioGallery" title="App 2">
-              <div class="portfolio-wrap">
-                <img src="<?php echo site_url(); ?>/wp-content/themes/starboardasia/assets/img/portfolio/img-2.png" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Sinh nhật thành viên trong công ty</h4>
-                </div>
-              </div>
-            </a>
-          </div>
-
-
-           <div class="col-lg-4 col-md-6 portfolio-item portfolio-element filter-business-japan"> 
-            <a href="<?php echo site_url(); ?>/wp-content/themes/starboardasia/assets/img/portfolio/img-3.png" class="link-preview venobox" data-gall="portfolioGallery" title="App 2">
-              <div class="portfolio-wrap">
-                <img src="<?php echo site_url(); ?>/wp-content/themes/starboardasia/assets/img/portfolio/img-3.png" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Du lịch Thái Lan</h4>
-                </div>
-              </div>
-            </a>
-          </div>
-        
+              </a>
+            </div>
+          <?php endwhile; ?>
+          <!-- end of the loop -->
+ 
+          <?php wp_reset_postdata(); ?>
 
         </div>
+        <?php endif; ?>
 
-        <div class="row">
-          <div class="col-lg-12 col-md-12 col-sm-12 text-center">
-            <button type="button" class="btn-view-more">Xem thêm</button>
-          </div>  
-        </div>  
+        <!-- Activities Tourism -->
+        <?php
+          $query_args = array(
+              'post_type'       => 'attachment',
+              'post_status'     => 'inherit',
+              'posts_per_page'  => -1,
+              'tax_query'       => array(
+                  array(
+                      'taxonomy' => 'mediamatic_wpfolder',
+                      'field'    => 'slug',
+                      'terms'    => 'tourism',
+                  ),
+              ),
+          );
 
+          $the_query = new WP_Query( $query_args );
+        ?>
 
+        <?php if ( $the_query->have_posts() ) : ?>
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+
+          <!-- the loop -->
+          <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+          <?php 
+            $p_id = get_the_ID();
+          ?>  
+            <div class="col-lg-4 col-md-6 portfolio-item portfolio-element filter-tourism"> 
+              <a href="<?php echo wp_get_attachment_image_src(get_post_thumbnail_id($p_i), 'full')[0];?>" class="link-preview venobox" data-gall="portfolioGallery" title="App 2">
+                <div class="portfolio-wrap">
+                  <img src="<?php echo wp_get_attachment_image_src(get_post_thumbnail_id($p_i), 'activities-thumb')[0];?>" class="img-fluid" alt="">
+                  <div class="portfolio-info">
+                    <h4><?php echo wp_get_attachment_caption();?></h4>
+                  </div>
+                </div>
+              </a>
+            </div>
+          <?php endwhile; ?>
+          <!-- end of the loop -->
+ 
+          <?php wp_reset_postdata(); ?>
+
+        </div>
+        <?php endif; ?>
+
+        <!-- Activities Business Japan -->
+        <?php
+          $query_args = array(
+              'post_type'       => 'attachment',
+              'post_status'     => 'inherit',
+              'posts_per_page'  => -1,
+              'tax_query'       => array(
+                  array(
+                      'taxonomy' => 'mediamatic_wpfolder',
+                      'field'    => 'slug',
+                      'terms'    => 'business-japan',
+                  ),
+              ),
+          );
+
+          $the_query = new WP_Query( $query_args );
+        ?>
+
+        <?php if ( $the_query->have_posts() ) : ?>
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+
+          <!-- the loop -->
+          <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+          <?php 
+            $p_id = get_the_ID();
+          ?>  
+            <div class="col-lg-4 col-md-6 portfolio-item portfolio-element filter-business-japan"> 
+              <a href="<?php echo wp_get_attachment_image_src(get_post_thumbnail_id($p_i), 'full')[0];?>" class="link-preview venobox" data-gall="portfolioGallery" title="App 2">
+                <div class="portfolio-wrap">
+                  <img src="<?php echo wp_get_attachment_image_src(get_post_thumbnail_id($p_i), 'activities-thumb')[0];?>" class="img-fluid" alt="">
+                  <div class="portfolio-info">
+                    <h4><?php echo wp_get_attachment_caption();?></h4>
+                  </div>
+                </div>
+              </a>
+            </div>
+          <?php endwhile; ?>
+          <!-- end of the loop -->
+ 
+          <?php wp_reset_postdata(); ?>          
+
+        </div>
+        <?php endif; ?>
+
+        <div class="row" style="display: none">
+            <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+              <button type="button" class="btn-view-more">Xem thêm</button>
+            </div>  
+          </div> 
 
       </div>
     </section><!-- End Portfolio Section -->
