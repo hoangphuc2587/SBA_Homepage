@@ -280,49 +280,49 @@ get_header();
 
                         <div class="col-lg-6 col-md-6 col-sm-12">
                           <div class="form-group">
-                            <input type="text" name="name" class="form-control" id="name" placeholder="<?php pll_e('Họ tên');?>" data-rule="required" data-msg="<?php pll_e('Vui lòng nhập họ tên');?>" />
+                            <input type="text" name="name" class="form-control" id="recruit-name" placeholder="<?php pll_e('Họ tên');?>" data-rule="required" data-msg="<?php pll_e('Vui lòng nhập họ tên');?>" />
                             <div class="validate"></div>
                           </div>
                         </div>
 
                         <div class="col-lg-6 col-md-6 col-sm-12">
                           <div class="form-group">
-                            <input type="text" class="form-control" name="birthday" id="birthday" placeholder="<?php pll_e('Năm sinh');?>" data-rule="required" data-msg="<?php pll_e('Vui lòng nhập năm sinh');?>" />
+                            <input type="text" class="form-control" name="birthday" id="recruit-birthday" placeholder="<?php pll_e('Năm sinh');?>" data-rule="required" data-msg="<?php pll_e('Vui lòng nhập năm sinh');?>" />
                             <div class="validate"></div>
                           </div>
                         </div>
 
                         <div class="col-lg-6 col-md-6 col-sm-12">
                           <div class="form-group">
-                            <input type="text" name="phone" class="form-control" id="phone" placeholder="<?php pll_e('Số điện thoại');?>" data-rule="required" data-msg="<?php pll_e('Vui lòng nhập số điện thoại');?>" />
+                            <input type="text" name="phone" class="form-control" id="recruit-phone" placeholder="<?php pll_e('Số điện thoại');?>" data-rule="required" data-msg="<?php pll_e('Vui lòng nhập số điện thoại');?>" />
                             <div class="validate"></div>
                           </div>
                         </div>
 
                         <div class="col-lg-6 col-md-6 col-sm-12">
                           <div class="form-group">
-                            <input type="text" name="address" class="form-control" id="address" placeholder="<?php pll_e('Địa chỉ');?>" data-rule="required" data-msg="<?php pll_e('Vui lòng nhập địa chỉ');?>" />
+                            <input type="text" name="address" class="form-control" id="recruit-address" placeholder="<?php pll_e('Địa chỉ');?>" data-rule="required" data-msg="<?php pll_e('Vui lòng nhập địa chỉ');?>" />
                             <div class="validate"></div>
                           </div>
                         </div>
 
                         <div class="col-lg-6 col-md-6 col-sm-12">
                           <div class="form-group">
-                            <input type="email" name="email" class="form-control" id="email" placeholder="<?php pll_e('Email');?>" data-rule="email" data-msg="<?php pll_e('Vui lòng nhập email');?>" />
+                            <input type="email" name="email" class="form-control" id="recruit-email" placeholder="<?php pll_e('Email');?>" data-rule="email" data-msg="<?php pll_e('Vui lòng nhập email');?>" />
                             <div class="validate"></div>
                           </div>
                         </div>
 
                         <div class="col-lg-6 col-md-6 col-sm-12">
                           <div class="form-group">
-                            <input type="text" name="position" class="form-control" id="position" placeholder="<?php pll_e('Vị trí');?>" data-rule="required" data-msg="<?php pll_e('Vui lòng nhập vị trí');?>" />
+                            <input type="text" name="position" class="form-control" id="recruit-position" placeholder="<?php pll_e('Vị trí');?>" data-rule="required" data-msg="<?php pll_e('Vui lòng nhập vị trí');?>" />
                             <div class="validate"></div>
                           </div>
                         </div>
 
                         <div class="col-lg-12 col-md-12 col-sm-12">
                           <div class="form-group">
-                            <textarea class="form-control" name="message" rows="3" data-rule="required" data-msg="<?php pll_e('Vui lòng nhập nội dung');?>" placeholder="<?php pll_e('Mong muốn');?>..."></textarea>
+                            <textarea class="form-control" id="recruit-message" name="message" rows="3" data-rule="required" data-msg="<?php pll_e('Vui lòng nhập nội dung');?>" placeholder="<?php pll_e('Mong muốn');?>..."></textarea>
                             <div class="validate"></div>
                           </div>
                         </div>
@@ -335,16 +335,22 @@ get_header();
                       </div>
 
                       <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-12 file-upload text-right">                          
+                        <div class="col-lg-6 col-md-6 col-sm-12 file-upload text-right">
                            <span class="form-group"><a id href='#'><?php pll_e('Tải lên CV');?> <!-- <i class="fa fa-upload"></i> --></a>
                             <input id="file-upload" accept="application/pdf,application/msword,
-  application/vnd.openxmlformats-officedocument.wordprocessingml.document" class="form-control" name="file" type='file' data-rule="required" data-msg="<?php pll_e('Vui lòng tải lên CV');?>"/>
-                           	 <div class="validate"></div>
+  application/vnd.openxmlformats-officedocument.wordprocessingml.document" class="form-control" type="file" name="file_cv" data-rule="required" data-msg="<?php pll_e('Vui lòng tải lên CV');?>"/>
+
+                           	 <div class="validate" style="margin-bottom: 0px"></div>
                            </span>
                         </div>  
                         <div class="col-lg-6 col-md-6 col-sm-12 text-left btn-submit">
                           <input type="hidden" name="action" value="save_recruit">
+                          <input type="hidden" name="action_upload" id="action-upload"  value="save_upload">
+                          <input type="hidden" name="url_upload" id="url-ajax"  value="<?php echo admin_url( 'admin-ajax.php' ); ?>">
                           <button type="submit" title="Gửi Ngay"><?php pll_e('Gửi ngay');?></button>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                          <h2 class="filename" style="font-size: 14px"></h2>
                         </div>
                       </div>  
                     </form>

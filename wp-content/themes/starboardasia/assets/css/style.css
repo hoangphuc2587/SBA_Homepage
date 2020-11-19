@@ -1361,6 +1361,7 @@ section {
   text-align: left;
   padding: 15px;
   font-weight: 600;
+  margin-right: 45px;
 }
 
 #recruit .php-email-form .error-message br + br {
@@ -1370,10 +1371,11 @@ section {
 #recruit .php-email-form .sent-message {
   display: none;
   color: #fff;
-  background: #18d26e;
+  background: #093f7b;
   text-align: center;
   padding: 15px;
   font-weight: 600;
+  margin-right: 45px;
 }
 
 #recruit .php-email-form .loading {
@@ -1390,7 +1392,7 @@ section {
   width: 24px;
   height: 24px;
   margin: 0 10px -6px 0;
-  border: 3px solid #18d26e;
+  border: 3px solid #093f7b;
   border-top-color: #eee;
   -webkit-animation: animate-loading 1s linear infinite;
   animation: animate-loading 1s linear infinite;
@@ -1565,6 +1567,7 @@ section {
   text-align: left;
   padding: 15px;
   font-weight: 600;
+  margin-right: 45px;
 }
 
 #clients .php-email-form .error-message br + br {

@@ -100,6 +100,7 @@
 
     var this_form = $(this);
     var action = $(this).attr('action');
+    var enctype = $(this).attr('enctype');
 
     if( ! action ) {
       this_form.find('.loading').slideUp();
@@ -119,18 +120,80 @@
         });
       });
     } else {
-      php_email_form_submit(this_form,action,this_form.serialize());
+      
+      if (enctype == "multipart/form-data"){
+        php_email_form_submit_upload(this_form,action,this_form.serialize());
+      }else{
+        php_email_form_submit(this_form,action,this_form.serialize());
+      }
     }
     
     return true;
   });
 
-  function php_email_form_submit(this_form, action, data) {
+  function php_email_form_submit(this_form, action, data) {    
     $.ajax({
       type: "POST",
       url: action,
       data: data,
       timeout: 40000
+    }).done( function(msg){
+      if (msg == 'OK') {
+        this_form.find('.loading').slideUp();
+        this_form.find('.sent-message').slideDown();
+        this_form.find("input[type=text], textarea, input[type=email]").val('');
+      } else {
+        this_form.find('.loading').slideUp();
+        if(!msg) {
+          msg = 'Form submission failed and no error message returned from: ' + action + '<br>';
+        }
+        this_form.find('.error-message').slideDown().html(msg);
+      }
+    }).fail( function(data){
+      console.log(data);
+      var error_msg = "Form submission failed!<br>";
+      if(data.statusText || data.status) {
+        error_msg += 'Status:';
+        if(data.statusText) {
+          error_msg += ' ' + data.statusText;
+        }
+        if(data.status) {
+          error_msg += ' ' + data.status;
+        }
+        error_msg += '<br>';
+      }
+      if(data.responseText) {
+        error_msg += data.responseText;
+      }
+      this_form.find('.loading').slideUp();
+      this_form.find('.error-message').slideDown().html(error_msg);
+    });
+  }
+
+  function php_email_form_submit_upload(this_form, action, data) { 
+  
+    var formdata = new FormData();
+    if($("#file-upload").prop('files').length > 0)
+    {
+        var file =$("#file-upload").prop('files')[0];
+        formdata.append("file_cv", file);
+        formdata.append("action", "save_recruit");
+        formdata.append("name", $("#recruit-name").val());
+        formdata.append("birth", $("#recruit-birthday").val());
+        formdata.append("email", $("#recruit-email").val());
+        formdata.append("phone", $("#recruit-phone").val());
+        formdata.append("address", $("#recruit-address").val());
+        formdata.append("position", $("#recruit-position").val());
+        formdata.append("message", $("#recruit-message").val());
+    }
+
+    $.ajax({
+      type: "POST",
+      url: action,
+      data: formdata,
+      timeout: 40000,
+      processData: false,
+      contentType: false,
     }).done( function(msg){
       if (msg == 'OK') {
         this_form.find('.loading').slideUp();
